@@ -1,224 +1,28 @@
 # nod
 
-[![NPM version](https://img.shields.io/npm/v/generator-nod.svg?style=flat-square)](https://npmjs.org/package/generator-nod)
-[![Build Status](https://img.shields.io/travis/diegohaz/nod/master.svg?style=flat-square)](https://travis-ci.org/diegohaz/nod) [![Coverage Status](https://img.shields.io/codecov/c/github/diegohaz/nod/master.svg?style=flat-square)](https://codecov.io/gh/diegohaz/nod/branch/master)
+[![NPM version](https://img.shields.io/npm/v/react-use-handler.svg?style=flat-square)](https://npmjs.org/package/react-use-handler)
+[![Build Status](https://img.shields.io/travis/vadzim/react-use-handler/master.svg?style=flat-square)](https://travis-ci.org/vadzim/react-use-handler) [![Coverage Status](https://img.shields.io/codecov/c/github/vadzim/react-use-handler/master.svg?style=flat-square)](https://codecov.io/gh/vadzim/react-use-handler/branch/master)
 
-NodeJS module generator/boilerplate.
+## TL;DR
 
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/3068563/21958520/77e4f45e-da97-11e6-9685-fe380a9cce3d.gif"></p>
+In most cases [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") hook should work for you. But if it's not, you're in the right place :)
 
-## Features
+## What is it about?
 
--   [**Babel**](https://babeljs.io/) - Write next generation JavaScript today.
--   [**Jest**](https://facebook.github.io/jest) - JavaScript testing framework used by Facebook.
--   [**ESLint**](http://eslint.org/) - Make sure you are writing a quality code.
--   [**Prettier**](https://prettier.io/) - Enforces a consistent style by parsing your code and re-printing it.
--   [**Flow**](https://flowtype.org/) - A static type checker for JavaScript used heavily within Facebook.
--   [**Travis CI**](https://travis-ci.org) - Automate tests and linting for every push or pull request.
--   [**Documentation**](http://documentation.js.org/) - A documentation system so good, you'll actually write documentation.
--   [**Conventional Changelog**](https://github.com/conventional-changelog/conventional-changelog) - Generate a changelog from git metadata.
+Suppose you have the code
 
-## Install
-
-The easiest way to use **nod** is through the Yeoman Generator.
-
-```sh
-$ npm install -g yo generator-nod
-$ yo nod
+```javascript
+  <ChildComponent onCoolEvent={(data) => { /* .... */ })} />
 ```
 
-If you don't want to use the generator, you can also download or `git clone` this repo
+`ChildComponent` receives newly created instance of a function in `onCoolEvent` prop on each render.
+Sometimes it is not a problem, sometimes it is. Sometimes [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") will help you. In case it's a problem and [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") is not enough just wrap that function with `useHandler` like this
 
-```sh
-$ git clone https://github.com/diegohaz/nod my-module
-$ cd my-module
-$ rm -rf .git
-$ npm install # or yarn
+```javascript
+  <ChildComponent onCoolEvent={useHandler((data) => { /* .... */ })} />
 ```
 
-Just make sure to edit `package.json`, `README.md` and `LICENSE` files accordingly with your module's info.
-
-## Commands
-
-```sh
-$ npm test # run tests with Jest
-$ npm run coverage # run tests with coverage and open it on browser
-$ npm run lint # lint code
-$ npm run docs # generate docs
-$ npm run build # generate docs and transpile code
-```
-
-### Publish
-
-```sh
-$ npm version patch|minor|major
-$ npm publish
-```
-
-It'll automatically run `test`, `lint`, `docs`, `build`, generate `CHANGELOG.md`, and push commits and tags to the remote repository.
-
-## Removing stuff
-
-<details><summary><strong>Flow</strong></summary>
-
-1.  Remove `.flowconfig` file.
-
-2.  Remove `flow` from `package.json`:
-
-    ```diff
-      "scripts": {
-    -   "flow": "flow check",
-    -   "flowbuild": "flow-copy-source src dist",
-    -   "prebuild": "npm run docs && npm run clean && npm run flowbuild",
-    +   "prebuild": "npm run docs && npm run clean",
-      },
-      "devDependencies": {
-    -   "@babel/preset-flow": "^7.0.0",
-    -   "eslint-plugin-flowtype": "^2.50.0",
-    -   "eslint-plugin-flowtype-errors": "^3.5.1",
-    -   "flow-bin": "^0.81.0",
-    -   "flow-copy-source": "^2.0.2",
-      }
-    ```
-
-3.  Remove `flow` from `.babelrc`:
-
-    ```diff
-      "presets": [
-    -   "@babel/preset-flow"
-      ]
-    ```
-
-4.  Remove `flow` from `.eslintrc`:
-
-    ```diff
-      "extends": [
-    -   "plugin:flowtype/recommended",
-    -   "prettier/flowtype"
-      ],
-      "plugins": [
-    -   "flowtype",
-    -   "flowtype-errors"
-      ],
-      "rules": {
-    -   "flowtype-errors/show-errors": "error"
-      }
-    ```
-
-5.  Run `yarn`.
-
-</details>
-
-<details><summary><strong>Documentation</strong></summary>
-
-1.  Remove `documentation` from `package.json`:
-
-    ```diff
-      "scripts": {
-    -   "docs": "documentation readme src --section=API",
-    -   "postdocs": "git add README.md",
-    -   "prebuild": "npm run docs && npm run clean",
-    +   "prebuild": "npm run clean",
-      },
-      "devDependencies": {
-    -   "documentation": "^8.0.0",
-      }
-    ```
-
-2.  Run `yarn`.
-
-</details>
-
-## Adding stuff
-
-<details><summary><strong>TypeScript</strong></summary>
-  
-1. Install dependencies:
-
-    ```sh
-    yarn add -D @babel/preset-typescript @types/jest @typescript-eslint/eslint-plugin @typescript-eslint/parser typescript
-    ```
-
-2.  Update `package.json`:
-
-    ```diff
-    + "types": "dist/ts/src",
-      "scripts": {
-    +   "type-check": "tsc --noEmit",
-    -   "lint": "eslint .",
-    +   "lint": "eslint . --ext js,ts,tsx",
-    -   "build": "babel src -d dist",
-    +   "build": "tsc --emitDeclarationOnly && babel src -d dist -x .js,.ts,.tsx",
-      },
-      "lint-staged": {
-    -   "*.js": [
-    +   "*.{js,ts,tsx}": [
-    -     "eslint --fix",
-    +     "eslint --fix --ext js,ts,tsx",
-          "git add"
-        ]
-      }
-    ```
-
-3.  Create `tsconfig.json`
-
-    ```json
-    {
-      "compilerOptions": {
-        "outDir": "dist/ts",
-        "target": "esnext",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "jsx": "react",
-        "strict": true,
-        "declaration": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitReturns": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "stripInternal": true
-      }
-    }
-    ```
-
-4.  Update `.babelrc`:
-
-    ```diff
-      "presets": [
-    +   "@babel/preset-typescript"
-      ]
-    ```
-
-5.  Update `.eslintrc` with these settings:
-
-    ```json
-      "settings": {
-        "import/resolver": {
-          "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"]
-          }
-        }
-      },
-      "overrides": [
-        {
-          "files": ["**/*.ts", "**/*.tsx"],
-          "parser": "@typescript-eslint/parser",
-          "parserOptions": {
-            "project": "./tsconfig.json"
-          },
-          "plugins": [
-            "@typescript-eslint"
-          ],
-          "rules": {
-            "no-undef": "off",
-            "no-unused-vars": "off",
-            "no-restricted-globals": "off"
-          }
-        }
-      ]
-    ```
-
-</details>
+`useHandler` guarantees that its return value will never change, but it'll always call the actual instance of your function with correct bindings.
 
 ## API
 
@@ -226,19 +30,20 @@ It'll automatically run `test`, `lint`, `docs`, `build`, generate `CHANGELOG.md`
 
 #### Table of Contents
 
--   [sayHello](#sayhello)
+-   [useHandler](#usehandler)
     -   [Parameters](#parameters)
 
-### sayHello
+### useHandler
 
-This function says hello.
+This hook makes a proxy for a function.
+It guarantees to return the same instance across multiple renders.
 
 #### Parameters
 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Some name to say hello for.
+-   `f` **Func** Some recreatable function to wrap in.
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The hello.
+Returns **Func** function.
 
 ## License
 
-MIT © [Diego Haz](https://github.com/diegohaz)
+MIT © [Vadzim Zieńka](https://github.com/vadzim)
