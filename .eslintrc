@@ -4,16 +4,30 @@
     "airbnb-base",
     "plugin:flowtype/recommended",
     "plugin:prettier/recommended",
-    "prettier/flowtype"
+    "prettier/flowtype",
   ],
   "plugins": [
     "flowtype",
-    "flowtype-errors"
+    "flowtype-errors",
+    "react-hooks",
   ],
   "env": {
-    "jest": true
+    "jest": true,
   },
   "rules": {
-    "flowtype-errors/show-errors": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "flowtype-errors/show-errors": "error",
+    "no-restricted-syntax": [
+      "error",
+      "WithStatement",
+      "LabeledStatement",
+      "ForInStatement",
+    ],
+    "no-await-in-loop": "off",
+    "no-return-await": "off",
+    "import/no-default-export": "error",
+    "import/prefer-default-export": "off",
+    "func-names": "off",
   }
 }
