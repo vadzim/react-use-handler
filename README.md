@@ -5,20 +5,24 @@
 
 ## TL;DR
 
-In most case [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") hook should work for you. But if it's not, you're in the right place :)
+In most cases [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") hook should work for you. But if it's not, you're in the right place :)
 
 ## What is it about?
 
 Suppose you have the code
 
-      <ChildComponent onEvent={(data) => { /* .... */ })} />
+```javascript
+  <ChildComponent onCoolEvent={(data) => { /* .... */ })} />
+```
 
-`ChildComponent` receives newly created instance of a function in `onEvent` prop on each render.
+`ChildComponent` receives newly created instance of a function in `onCoolEvent` prop on each render.
 Sometimes it is not a problem, sometimes it is. Sometimes [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") will help you. In case it's a problem and [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") is not enough just wrap that function with `useHandler` like this
 
-      <ChildComponent onEvent={useHandler((data) => { /* .... */ })} />
+```javascript
+  <ChildComponent onCoolEvent={useHandler((data) => { /* .... */ })} />
+```
 
-`useHandler` guarantees that its return value never change, but it always call the actual instance of your function with correct bindings.
+`useHandler` guarantees that its return value will never change, but it'll always call the actual instance of your function with correct bindings.
 
 ## API
 
