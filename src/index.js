@@ -8,11 +8,11 @@ import { useRef } from "react"
  * @param f Some recreatable function to wrap in.
  * @returns function.
  */
-export function useHandler<F: Function>(f: F): F {
+export function useHandler<Func: Function>(f: Func): Func {
 	const ref = useRef(f)
 	ref.current = f
-	const { current: ret } = useRef(function(...args) {
+	const proxy = useRef(function(...args) {
 		return ref.current.apply(this, args)
 	})
-	return (ret: any)
+	return (proxy.current: any)
 }
