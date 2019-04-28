@@ -96,7 +96,7 @@ It guarantees to return the same instance across multiple renders. It calls noth
 
 #### Parameters
 
--   `f` **Func** Some recreatable function to wrap.
+-   `f` **Func?** Some recreatable function to wrap.
 
 Returns **Func** function.
 
