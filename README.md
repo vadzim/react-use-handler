@@ -3,16 +3,22 @@
 [![NPM version](https://img.shields.io/npm/v/react-use-handler.svg?style=flat-square)](https://npmjs.org/package/react-use-handler)
 [![Build Status](https://img.shields.io/travis/vadzim/react-use-handler/master.svg?style=flat-square)](https://travis-ci.org/vadzim/react-use-handler) [![Coverage Status](https://img.shields.io/codecov/c/github/vadzim/react-use-handler/master.svg?style=flat-square)](https://codecov.io/gh/vadzim/react-use-handler/branch/master)
 
+## TL;DR
+
+In most case [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") hook should work for you. But if it's not, you're in the right place :)
+
+## What is it about?
+
 Suppose you have the code
 
       <ChildComponent onEvent={(data) => { /* .... */ })} />
 
 `ChildComponent` receives newly created instance of a function in `onEvent` prop on each render.
-Sometimes it is not a problem, sometimes it is. In case it's a problem just wrap that function with `useHandler` like this
+Sometimes it is not a problem, sometimes it is. Sometimes [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") will help you. In case it's a problem and [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") is not enough just wrap that function with `useHandler` like this
 
       <ChildComponent onEvent={useHandler((data) => { /* .... */ })} />
 
-`useHandler` guaranties that its return value never change, but it always call actual instance of your function.
+`useHandler` guarantees that its return value never change, but it always call the actual instance of your function with correct bindings.
 
 ## API
 
