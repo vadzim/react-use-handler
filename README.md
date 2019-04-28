@@ -36,9 +36,9 @@ It guarantees to return the same instance across multiple renders.
 
 #### Parameters
 
--   `f` **F** Some recreatable function to wrap in.
+-   `f` **Func** Some recreatable function to wrap in.
 
-Returns **F** function.
+Returns **Func** function.
 
 ## License
 
