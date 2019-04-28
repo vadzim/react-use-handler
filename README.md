@@ -28,6 +28,7 @@ Sometimes it is not a problem, sometimes it is. Sometimes [`useCallback`](https:
 ### Use case #2.
 
 You have a component with very long and expensive async effects. Like so:
+
 ```javascript
   const EffectiveComponent = ({ prop1, prop2, onFirstStage, onSecondStage }) => {
     /*...*/
@@ -47,9 +48,11 @@ You have a component with very long and expensive async effects. Like so:
     }, [prop1, prop2])
   }
 ```
+
 Suppose you appreciate your effect very much and do not want to restart it if some of event props change. You want your effect to just do its work and emit some events. But there is a problem. If `on...` prop change you should restart your effect otherwise it will call obsolete things. If you restart your effect on minor prop changes you can end up with some bad user experience.
 
 To escape this you could make a ref, store there your event handler and then call it inside your effect without any trouble. But that's exactly what `useHandler` does! Let's use it:
+
 ```javascript
   const EffectiveComponent = ({ prop1, prop2, onFirstStage, onSecondStage }) => {
     /*...*/
@@ -74,6 +77,7 @@ To escape this you could make a ref, store there your event handler and then cal
     return /*....*/
   }
 ```
+
 `useHandler` also handles the case when callback is actually undefined or null. In those cases it calls nothing and returns undefined.
 
 ## API
@@ -88,11 +92,11 @@ To escape this you could make a ref, store there your event handler and then cal
 ### useHandler
 
 This hook makes a proxy for a function.
-It guarantees to return the same instance across multiple renders.
+It guarantees to return the same instance across multiple renders. It calls nothing if actual handler is nullish.
 
 #### Parameters
 
--   `f` **Func** Some recreatable function to wrap in.
+-   `f` **Func** Some recreatable function to wrap.
 
 Returns **Func** function.
 
