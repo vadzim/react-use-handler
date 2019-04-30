@@ -1,6 +1,6 @@
 {
   "name": "react-use-handler",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "turn recreatable function to a persistent one",
   "license": "MIT",
   "repository": "vadzim/react-use-handler",
