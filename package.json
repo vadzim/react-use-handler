@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "coverage": "npm test -- --coverage",
+    "coverage": "npm test -- --coverage --collectCoverageFrom=src/**/*.js",
     "postcoverage": "opn coverage/lcov-report/index.html",
     "lint": "eslint .",
     "flow": "flow check",
@@ -57,6 +57,7 @@
     "@babel/plugin-proposal-class-properties": "7.4.4",
     "@babel/preset-env": "7.4.4",
     "@babel/preset-flow": "7.0.0",
+    "@babel/preset-react": "7.0.0",
     "babel-eslint": "10.0.1",
     "babel-jest": "24.7.1",
     "documentation": "10.1.0",
@@ -67,6 +68,7 @@
     "eslint-plugin-flowtype-errors": "4.1.0",
     "eslint-plugin-import": "2.17.2",
     "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-react": "7.12.4",
     "eslint-plugin-react-hooks": "1.6.0",
     "flow-bin": "0.98.0",
     "flow-copy-source": "2.0.3",
@@ -76,6 +78,7 @@
     "opn-cli": "4.1.0",
     "prettier": "1.17.0",
     "react": "16.8.6",
+    "react-test-renderer": "16.8.6",
     "rimraf": "2.6.3",
     "standard-changelog": "2.0.7"
   }
