@@ -1,3 +1,7 @@
+## [1.0.9](https://github.com/vadzim/react-use-handler/compare/v1.0.8...v1.0.9) (2019-04-30)
+
+
+
 ## [1.0.8](https://github.com/vadzim/react-use-handler/compare/v1.0.7...v1.0.8) (2019-04-29)
 
 
