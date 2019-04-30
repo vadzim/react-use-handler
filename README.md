@@ -1,6 +1,7 @@
 # useHandler
 
 [![NPM version](https://img.shields.io/npm/v/react-use-handler.svg?style=flat-square)](https://npmjs.org/package/react-use-handler)
+[![Build Status](https://img.shields.io/travis/vadzim/react-use-handler/master.svg?style=flat-square)](https://travis-ci.org/vadzim/react-use-handler) <!-- [![Coverage Status](https://img.shields.io/codecov/c/github/vadzim/react-use-handler/master.svg?style=flat-square)](https://codecov.io/gh/vadzim/react-use-handler/branch/master) -->
 
 ## TL;DR
 
