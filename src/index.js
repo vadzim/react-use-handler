@@ -1,6 +1,6 @@
 // @flow
 
-import { useRef } from "react"
+import { useRef, useLayoutEffect } from "react"
 
 /**
  * This hook makes a proxy for a function.
@@ -10,7 +10,9 @@ import { useRef } from "react"
  */
 export function useHandler<Func: Function>(f: ?Func): Func {
 	const ref = useRef(f)
-	ref.current = f
+	useLayoutEffect(() => {
+		ref.current = f
+	})
 	const proxy = useRef(function(...args) {
 		return ref.current == null ? undefined : ref.current.apply(this, args)
 	})
