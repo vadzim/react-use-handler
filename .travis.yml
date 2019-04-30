@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - v8
 script:
-  - yarn lint
-  - yarn test --coverage
+  - npm run lint
+  - npm run test --coverage
 cache:
-  - yarn
+  - npm ci
 after_success:
   - bash <(curl -s https://codecov.io/bash)
