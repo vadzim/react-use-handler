@@ -1,6 +1,6 @@
 {
   "name": "react-use-handler",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "turn recreatable function to a persistent one",
   "license": "MIT",
   "repository": "vadzim/react-use-handler",
@@ -17,7 +17,6 @@
   "scripts": {
     "test": "jest",
     "coverage": "npm test -- --coverage --collectCoverageFrom=src/**/*.js",
-    "postcoverage": "opn coverage/lcov-report/index.html",
     "lint": "eslint .",
     "flow": "flow check",
     "docs": "documentation readme src --section=API",
@@ -77,9 +76,9 @@
     "husky": "2.1.0",
     "jest": "24.7.1",
     "lint-staged": "8.1.5",
-    "opn-cli": "4.1.0",
     "prettier": "1.17.0",
     "react": "16.8.6",
+    "react-hooks-testing-library": "0.5.0",
     "react-test-renderer": "16.8.6",
     "rimraf": "2.6.3",
     "standard-changelog": "2.0.7"

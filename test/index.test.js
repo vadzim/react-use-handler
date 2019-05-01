@@ -1,41 +1,54 @@
-import { create } from "./react-hook-test-renderer"
+import { renderHook } from "react-hooks-testing-library"
 import { useHandler } from "../src"
 
 test("useHandler should return the same instance", () => {
-	const testHandler = create(useHandler)
+	const testHandler = renderHook(({ cb }) => useHandler(cb), { initialProps: { cb: x => x } })
 
-	const callback = testHandler.render(x => x)
-	expect(typeof callback).toBe("function")
-	expect(callback(1)).toBe(1)
+	const callback = testHandler.result.current
 
-	expect(testHandler.update(x => x * 2)).toBe(callback)
+	expect(typeof testHandler.result.current).toBe("function")
+	expect(testHandler.result.current(1)).toBe(1)
+
+	testHandler.rerender({ cb: x => x * 2 })
+
+	expect(testHandler.result.current).toBe(callback)
 	expect(callback(1)).toBe(2)
 
-	expect(testHandler.update(x => x * 5)).toBe(callback)
+	testHandler.rerender({ cb: x => x * 5 })
+
+	expect(testHandler.result.current).toBe(callback)
 	expect(callback(1)).toBe(5)
 })
 
 test("useHandler should not crash on nullish", () => {
-	const testHandler = create(useHandler)
+	const testHandler = renderHook(({ cb }) => useHandler(cb), { initialProps: { cb: undefined } })
 
-	const callback = testHandler.render(undefined)
-	expect(typeof callback).toBe("function")
-	expect(callback(1)).toBe(undefined)
+	const callback = testHandler.result.current
 
-	expect(testHandler.update(x => x * 7)).toBe(callback)
+	expect(typeof testHandler.result.current).toBe("function")
+	expect(testHandler.result.current(1)).toBe(undefined)
+
+	testHandler.rerender({ cb: x => x * 7 })
+
+	expect(testHandler.result.current).toBe(callback)
 	expect(callback(1)).toBe(7)
 
-	expect(testHandler.update(null)).toBe(callback)
+	testHandler.rerender({ cb: null })
+
+	expect(testHandler.result.current).toBe(callback)
 	expect(callback(1)).toBe(undefined)
 })
 
 test("useHandler should not crash on updating to nullish", () => {
-	const testHandler = create(useHandler)
+	const testHandler = renderHook(({ cb }) => useHandler(cb), { initialProps: { cb: x => x * 8 } })
 
-	const callback = testHandler.render(x => x * 8)
-	expect(typeof callback).toBe("function")
-	expect(callback(1)).toBe(8)
+	const callback = testHandler.result.current
 
-	expect(testHandler.update(undefined)).toBe(callback)
+	expect(typeof testHandler.result.current).toBe("function")
+	expect(testHandler.result.current(1)).toBe(8)
+
+	testHandler.rerender({ cb: undefined })
+
+	expect(testHandler.result.current).toBe(callback)
 	expect(callback(1)).toBe(undefined)
 })
