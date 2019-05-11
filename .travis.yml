@@ -3,7 +3,7 @@ node_js:
   - v8
 script:
   - npm run lint
-  - npm run test --coverage
+  - npm run test -- --coverage
 cache:
   - npm ci
 after_success:
