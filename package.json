@@ -30,15 +30,9 @@
     "postpublish": "git push origin master --follow-tags",
     "codecov": "codecov --token=$CODECOV_TOKEN"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
+  "lint-changed": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "keywords": [
@@ -73,9 +67,8 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "flow-bin": "^0.98.0",
     "flow-copy-source": "^2.0.4",
-    "husky": "^2.1.0",
     "jest": "^24.7.1",
-    "lint-staged": "^8.1.5",
+    "lint-changed": "0.0.0-development",
     "prettier": "^1.17.0",
     "react": "^16.8.6",
     "react-hooks-testing-library": "^0.5.0",
