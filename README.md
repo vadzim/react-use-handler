@@ -6,7 +6,7 @@
 
 ## TL;DR
 
-In most cases [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") hook should work for you. But if it's not, you're in the right place :)
+In most cases [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback "Hook API Reference") hook should work for you. But if it doesn't, you're in the right place :)
 
 ## What is it about?
 
