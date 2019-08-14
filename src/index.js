@@ -4,7 +4,7 @@ import { useRef, useLayoutEffect } from "react"
 
 /**
  * This hook makes a proxy for a function.
- * It guarantees to return the same instance across multiple renders. It calls nothing if actual handler is nullish.
+ * It guarantees to return the same instance across multiple renders. It calls nothing if the actual handler is nullish.
  * @param f Some recreatable function to wrap.
  * @returns function.
  */
