@@ -1,3 +1,4 @@
+// @flow
 import { renderHook } from "@testing-library/react-hooks"
 import { useHandler } from "../src"
 
