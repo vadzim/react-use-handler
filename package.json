@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository": "vadzim/react-use-handler",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "author": {
     "name": "Vadzim Zieńka",
     "email": "v@vadzim.info",
@@ -12,6 +13,7 @@
   },
   "files": [
     "dist",
+    "types",
     "src"
   ],
   "scripts": {
