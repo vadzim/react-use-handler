@@ -53,3 +53,11 @@ test("useHandler should not crash on updating to nullish", () => {
 	expect(testHandler.result.current).toBe(callback)
 	expect(callback(1)).toBe(undefined)
 })
+
+test("check flow type", () => {
+	renderHook(() => {
+		const func: (x: number) => string = x => x.toString()
+		const handler: (x: number) => string = useHandler(func)
+		return handler
+	})
+})
