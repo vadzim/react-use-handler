@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository": "vadzim/react-use-handler",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "author": {
     "name": "Vadzim Zieńka",
     "email": "v@vadzim.info",
@@ -12,12 +13,13 @@
   },
   "files": [
     "dist",
+    "types",
     "src"
   ],
   "scripts": {
     "test": "jest",
     "coverage": "npm test -- --coverage --collectCoverageFrom=src/**/*.js",
-    "lint": "eslint .",
+    "lint": "eslint . --ext .js,.ts",
     "flow": "flow check",
     "flowinstall": "flow-typed install --ignoreDeps=dev; flow-typed install jest",
     "docs": "documentation readme src --section=API",
@@ -52,7 +54,11 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-flow": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@testing-library/react-hooks": "^3.2.1",
+    "@types/jest": "^24.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "codecov": "^3.6.1",
@@ -74,6 +80,7 @@
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-test-renderer": "^16.12.0",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.5"
   }
 }
