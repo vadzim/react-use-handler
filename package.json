@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": "vadzim/react-use-handler",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "src/index.d.ts",
   "author": {
     "name": "Vadzim Zieńka",
     "email": "v@vadzim.info",
